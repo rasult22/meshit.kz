@@ -1,0 +1,29 @@
+import React from 'react'
+
+interface Props {
+  selected?: boolean
+  onClick?: () => void
+  text?: string
+  imgSrc?: string
+}
+
+const UIImageCard: React.FC<Props> = ({ selected, onClick, text, imgSrc }) => {
+  return (
+    <div
+      className={`${
+        selected ? 'border-alpha' : 'border-[transparent]'
+      } rounded-[8px] transition-all border-2 max-w-[120px] bg-[white] overflow-hidden`}
+    >
+      <img src={imgSrc} alt="select image" />
+      <div
+        className={`${
+          selected ? 'bg-alpha text-[white]' : ''
+        } py-[8px] text-center text-[14px]`}
+      >
+        {text}
+      </div>
+    </div>
+  )
+}
+
+export default UIImageCard

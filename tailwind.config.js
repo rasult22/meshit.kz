@@ -5,5 +5,12 @@ module.exports = {
     extend: {
       opacity: ['disabled']
     }
+  },
+  theme: {
+    colors: {
+      alpha: '#4CAF50',
+      beta: '#E0E0E0',
+      gamma: ''
+    }
   }
 }
