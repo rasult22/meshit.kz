@@ -59,6 +59,9 @@ module.exports = {
       96: '384px'
     },
     extend: {
+      boxShadow: {
+        'custom-light': '0px 1px 1px rgba(0, 0, 0, 0.05)'
+      },
       lineHeight: {
         3: '12px',
         4: '16px',
