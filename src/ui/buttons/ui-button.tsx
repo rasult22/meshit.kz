@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`bg-alpha hover:bg-blue-700 text-[white] text-[12px] leading-[16px] font-bold py-[8px] px-4 rounded-[8px] ${
+      className={`bg-alpha hover:opacity-[0.9] text-[white] text-[12px] leading-[16px] font-bold py-[8px] px-4 rounded-[8px] ${
         disabled ? 'disabled:bg-beta' : ''
       } ${block ? 'w-full' : ''}`}
       disabled={disabled}

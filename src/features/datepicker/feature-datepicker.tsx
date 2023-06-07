@@ -5,8 +5,6 @@ import 'dayjs/locale/kk'
 import locale from 'antd/locale/kk_KZ'
 import UIButton from '../../ui/buttons/ui-button'
 import './date-picker.css'
-import updateLocale from 'dayjs/plugin/updateLocale'
-dayjs.extend(updateLocale)
 //  [
 //     'Қаңтар',
 //     'Ақпан',
@@ -21,9 +19,6 @@ dayjs.extend(updateLocale)
 //     'Қараша',
 //     'Желтоқсан'
 //   ]
-dayjs.updateLocale('kk', {
-  months: {}
-})
 
 const FeatureDatePicker: React.FC = () => {
   const [isPopupOpen, setPopupOpen] = useState(false)
@@ -59,7 +54,6 @@ const FeatureDatePicker: React.FC = () => {
       ></div>
       <div className="">
         <DatePicker
-          format="MMMM YYYY"
           open={isPopupOpen}
           showToday={false}
           renderExtraFooter={Test}
