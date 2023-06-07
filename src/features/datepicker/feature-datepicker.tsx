@@ -4,21 +4,8 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/kk'
 import locale from 'antd/locale/kk_KZ'
 import UIButton from '../../ui/buttons/ui-button'
+import UIOverlay from '@/ui/overlay/ui-overlay'
 import './date-picker.css'
-//  [
-//     'Қаңтар',
-//     'Ақпан',
-//     'Наурыз',
-//     'Сәуір',
-//     'Мамыр',
-//     'Маусым',
-//     'Шілде',
-//     'Тамыз',
-//     'Қыркүйек',
-//     'Қазан',
-//     'Қараша',
-//     'Желтоқсан'
-//   ]
 
 const FeatureDatePicker: React.FC = () => {
   const [isPopupOpen, setPopupOpen] = useState(false)
@@ -29,7 +16,7 @@ const FeatureDatePicker: React.FC = () => {
 
   const Test: React.FC = () => {
     return (
-      <div className="w-full">
+      <div className="w-full p-3">
         <UIButton onClick={onClick} block>
           Көрсету
         </UIButton>
@@ -47,18 +34,12 @@ const FeatureDatePicker: React.FC = () => {
       }}
     >
       <div onClick={() => setPopupOpen(true)}>Hello</div>
-      <div
-        className={`${
-          isPopupOpen ? '' : 'hidden'
-        } fixed z-10 top-0 left-0 backdrop-blur-lg w-[100vw] bg-[rgba(0,0,0,0.4)] h-[100vh]`}
-      ></div>
-      <div className="">
-        <DatePicker
-          open={isPopupOpen}
-          showToday={false}
-          renderExtraFooter={Test}
-        />
-      </div>
+      <UIOverlay isOpen={isPopupOpen} />
+      <DatePicker
+        open={isPopupOpen}
+        showToday={false}
+        renderExtraFooter={Test}
+      />
     </ConfigProvider>
   )
 }

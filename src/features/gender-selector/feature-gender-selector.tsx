@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import UIOverlay from '@/ui/overlay/ui-overlay'
-import UIImageCard from '@/ui/cards/image-card'
+import UIImageCard from '@/ui/cards/ui-image-card'
 import UIButton from '@/ui/buttons/ui-button'
 import aiel from '@/../assets/Aiel.svg'
 import yer from '@/../assets/Yer.svg'
@@ -25,8 +25,8 @@ const FeatureGenderSelector: React.FC<Props> = ({ value, onGenderSelect }) => {
   return (
     <>
       <UIOverlay isOpen={true} onClick={() => 1} />
-      <div className="fixed z-20 p-6 top-[50%] translate-y-[-50%] bg-[#F5F5F5] rounded-[16px]">
-        <div className="flex space-x-2 mb-6">
+      <div className="fixed w-[85%] z-20 p-6 top-[50%] max-w-[300px] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#F5F5F5] rounded-[16px]">
+        <div className="flex justify-center space-x-5 mb-6">
           <UIImageCard
             text="Ер"
             imgSrc={yer}
