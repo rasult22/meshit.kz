@@ -1,12 +1,15 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState } from 'react'
 
 import UIButton from './ui/buttons/ui-button'
 import UIImageCard from './ui/cards/image-card'
 import FeatureDatePicker from './features/datepicker/feature-datepicker'
+import FeatureGenderSelector from './features/gender-selector/feature-gender-selector'
 import aiel from '../assets/Aiel.svg'
 import yer from '../assets/Yer.svg'
 
 function App(): ReactElement {
+  const [isGenderSelectorOpen, setGenderOpen] = useState(false)
+  const [gender, setGender] = useState<'male' | 'female' | undefined>()
   return (
     <div>
       <FeatureDatePicker />
@@ -16,6 +19,17 @@ function App(): ReactElement {
         <UIImageCard text="Ер" imgSrc={yer} selected />
         <UIImageCard text="Әйел" imgSrc={aiel} />
       </div>
+      <button onClick={() => setGenderOpen(true)}>Open gender selector</button>
+      <p>current gender: {gender} </p>
+      {isGenderSelectorOpen && (
+        <FeatureGenderSelector
+          value={gender}
+          onGenderSelect={(gender) => {
+            setGender(gender)
+            setGenderOpen(false)
+          }}
+        />
+      )}
     </div>
   )
 }

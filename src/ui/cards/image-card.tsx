@@ -10,6 +10,7 @@ interface Props {
 const UIImageCard: React.FC<Props> = ({ selected, onClick, text, imgSrc }) => {
   return (
     <div
+      onClick={onClick}
       className={`${
         selected ? 'border-alpha' : 'border-[transparent]'
       } rounded-[8px] transition-all border-2 max-w-[120px] bg-[white] relative overflow-hidden pb-4`}
