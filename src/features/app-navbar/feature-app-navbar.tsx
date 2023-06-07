@@ -9,6 +9,11 @@ type FeatureAppNavbarProps = {
   initialTitle?: string
 }
 
+/* TODO: 
+  1. Develop configurable states
+  2. Add event emitters to clicking on slots
+*/
+
 const FeatureAppNavbar: FC<FeatureAppNavbarProps> = ({ initialTitle = '' }) => {
   const [isSearchIcon, setIsSearchIcon] = useState(true)
   const [title, setTitle] = useState(initialTitle)

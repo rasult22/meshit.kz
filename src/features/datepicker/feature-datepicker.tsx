@@ -7,6 +7,11 @@ import UIButton from '../../ui/buttons/ui-button'
 import UIOverlay from '@/ui/overlay/ui-overlay'
 import './date-picker.css'
 
+/* TODO: 
+  1. Center calendar dialog
+  2. Add value propagation
+*/
+
 const FeatureDatePicker: React.FC = () => {
   const [isPopupOpen, setPopupOpen] = useState(false)
 
