@@ -12,7 +12,9 @@ const HomePage = () => {
 
   return (
     <>
-      <FeatureAppNavbar initialTitle="Hello" />
+      <div className="-mx-4">
+        <FeatureAppNavbar initialTitle="Hello" />
+      </div>
       <FeatureDatePicker />
       <button onClick={() => setGenderOpen(true)}>Open gender selector</button>
       <p>current gender: {gender} </p>

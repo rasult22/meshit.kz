@@ -5,6 +5,7 @@ import App from './App'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MosquePage from './pages/mosque/mosque-page'
 import HomePage from './pages/index/home-page'
+import FilterPage from './pages/filter/filter-page'
 
 const root = createRoot(document.getElementById('root') as HTMLElement)
 
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />
+      },
+      {
+        path: 'filter',
+        element: <FilterPage />
       },
       {
         path: 'mosque/:mosqueId',

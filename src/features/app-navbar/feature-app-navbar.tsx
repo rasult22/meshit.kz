@@ -6,7 +6,9 @@ import { BackIcon } from '@/icons/back-icon'
 import UINavbar from '@/ui/navbar/ui-navbar'
 
 type FeatureAppNavbarProps = {
-  initialTitle?: string
+  center: React.ReactNode
+  right: React.ReactNode
+  left: React.ReactNode
 }
 
 /* TODO: 
@@ -14,24 +16,12 @@ type FeatureAppNavbarProps = {
   2. Add event emitters to clicking on slots
 */
 
-const FeatureAppNavbar: FC<FeatureAppNavbarProps> = ({ initialTitle = '' }) => {
-  const [isSearchIcon, setIsSearchIcon] = useState(true)
-  const [title, setTitle] = useState(initialTitle)
-  const [showIcon, setShowIcon] = useState(false)
-  const [isFilterIcon, setIsFilterIcon] = useState(true)
-
-  const toggleLeftIcon = () => setIsSearchIcon(!isSearchIcon)
-  const toggleRightIcon = () => setIsFilterIcon(!isFilterIcon)
-  const updateTitle = (newTitle: string) => setTitle(newTitle)
-  const toggleCenterIcon = () => setShowIcon(!showIcon)
-
-  return (
-    <UINavbar
-      leftIcon={isSearchIcon ? <SearchIcon /> : <BackIcon />}
-      rightIcon={isFilterIcon ? <FilterIcon /> : <CalendarIcon />}
-      centerContent={<>{title}</>}
-    />
-  )
+const FeatureAppNavbar: FC<FeatureAppNavbarProps> = ({
+  right,
+  left,
+  center
+}) => {
+  return <UINavbar leftIcon={left} rightIcon={right} centerContent={center} />
 }
 
 export default FeatureAppNavbar

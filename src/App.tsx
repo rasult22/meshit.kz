@@ -13,7 +13,7 @@ import { Outlet } from 'react-router-dom'
 
 function App(): ReactElement {
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col w-full h-full px-4">
       <Outlet />
     </div>
   )
