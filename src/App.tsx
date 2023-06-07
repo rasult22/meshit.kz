@@ -5,6 +5,7 @@ import FeatureGenderSelector from './features/gender-selector/feature-gender-sel
 import FeatureAppNavbar from './features/app-navbar/feature-app-navbar'
 import FeatureBannerCarousel from './features/banner-carousel/feature-banner-carousel'
 import UIChip from './ui/chips/ui-chip'
+import UITitle from './ui/title/ui-title'
 /* TODO: 
   1. Add react-query
   2. Add react-router
@@ -38,6 +39,7 @@ function App(): ReactElement {
         <UIChip selected={true}>Алматы</UIChip>
         <UIChip selected={false}>Орталық мешіт</UIChip>
       </div>
+      <UITitle>Title</UITitle>
     </div>
   )
 }
