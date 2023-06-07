@@ -3,6 +3,7 @@ import React, { ReactElement, useState } from 'react'
 import FeatureDatePicker from './features/datepicker/feature-datepicker'
 import FeatureGenderSelector from './features/gender-selector/feature-gender-selector'
 import FeatureAppNavbar from './features/app-navbar/feature-app-navbar'
+import UIChip from './ui/chips/ui-chip'
 
 function App(): ReactElement {
   const [isGenderSelectorOpen, setGenderOpen] = useState(false)
@@ -22,6 +23,10 @@ function App(): ReactElement {
           }}
         />
       )}
+      <div>
+        <UIChip selected={true}>Алматы</UIChip>
+        <UIChip selected={false}>Орталық мешіт</UIChip>
+      </div>
     </div>
   )
 }
