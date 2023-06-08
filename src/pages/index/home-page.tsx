@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
-import FeatureDatePicker from '@/features/datepicker/feature-datepicker'
 import FeatureGenderSelector from '@/features/gender-selector/feature-gender-selector'
 import FeatureAppNavbar from '@/features/app-navbar/feature-app-navbar'
 import FeatureBannerCarousel from '@/features/banner-carousel/feature-banner-carousel'
-import UIChip from '@/ui/chips/ui-chip'
-import UITitle from '@/ui/title/ui-title'
 import UICell from '@/ui/cell/ui-cell'
 import { useNavigate } from 'react-router-dom'
 import { SearchIcon } from '@/icons/search-icon'
@@ -33,14 +30,16 @@ const HomePage = () => {
           </div>
         }
       />
-      <FeatureDatePicker />
-      <button onClick={() => setGenderOpen(true)}>Open gender selector</button>
-      <p>current gender: {gender} </p>
-      <FeatureBannerCarousel />
+      <div className="min-h-[125px] my-4">
+        <FeatureBannerCarousel />
+      </div>
       <div className="space-y-2 my-2">
         {mosques.map((mosque) => {
           return (
             <UICell
+              onClick={() => {
+                navigate('/mosque/' + mosque.id)
+              }}
               key={mosque.id}
               title={mosque.name}
               imageSrc={mosque.image}
@@ -74,11 +73,7 @@ const HomePage = () => {
           }}
         />
       )}
-      <div>
-        <UIChip selected={true}>Алматы</UIChip>
-        <UIChip selected={false}>Орталық мешіт</UIChip>
-      </div>
-      <UITitle>Title</UITitle>
+      <button onClick={() => setGenderOpen(true)}>Open gender selector</button>
     </>
   )
 }

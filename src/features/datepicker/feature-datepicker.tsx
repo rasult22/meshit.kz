@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { DatePicker, ConfigProvider, Divider } from 'antd'
+import React from 'react'
+import { DatePicker, ConfigProvider } from 'antd'
 import dayjs from 'dayjs'
 import 'dayjs/locale/kk'
 import locale from 'antd/locale/kk_KZ'
@@ -9,14 +9,17 @@ import './date-picker.css'
 
 /* TODO: 
   1. Center calendar dialog
-  2. Add value propagation
+  2. Add value propagation ✅
 */
 
-const FeatureDatePicker: React.FC = () => {
-  const [isPopupOpen, setPopupOpen] = useState(false)
+interface Props {
+  isOpen: boolean
+  setIsOpen: (newVal: boolean) => void
+}
 
+const FeatureDatePicker: React.FC<Props> = ({ isOpen, setIsOpen }) => {
   const onClick = () => {
-    setPopupOpen(false)
+    setIsOpen(false)
   }
 
   const Test: React.FC = () => {
@@ -38,13 +41,8 @@ const FeatureDatePicker: React.FC = () => {
         }
       }}
     >
-      <div onClick={() => setPopupOpen(true)}>Hello</div>
-      <UIOverlay isOpen={isPopupOpen} />
-      <DatePicker
-        open={isPopupOpen}
-        showToday={false}
-        renderExtraFooter={Test}
-      />
+      <UIOverlay isOpen={isOpen} />
+      <DatePicker open={isOpen} showToday={false} renderExtraFooter={Test} />
     </ConfigProvider>
   )
 }

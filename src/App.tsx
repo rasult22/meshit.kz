@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
   2. Add react-router ✅
   3. Create layout system
   4. Add api type declarations
-  5. Add UICell
+  5. Add UICell ✅
   6. Add FeatureLessonsList
   7. Add zustand?
 */

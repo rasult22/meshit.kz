@@ -6,10 +6,10 @@ interface Props {
 }
 
 /* TODO: 
-  1. Add titles and chips
-  2. Add chips gender selector
-  3. Add other chip selectors as well
-  4. Add floating button
+  1. Add titles and chips ✅
+  2. Add chips gender selector ✅
+  3. Add other chip selectors as well ✅
+  4. Add floating button ✅
 */
 
 const FeatureFeedFilter: React.FC<Props> = ({
