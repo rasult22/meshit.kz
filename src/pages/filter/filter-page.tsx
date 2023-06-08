@@ -5,29 +5,23 @@ import UIChip from '@/ui/chips/ui-chip'
 import UIButton from '@/ui/buttons/ui-button'
 import { BackIcon } from '@/icons/back-icon'
 import { cities, mosques, lessonTypes } from './mock'
-// import { useHistory } from 'react-router-dom'
-
-// TODO:
-// 1. Add programmatic navigation
-const Clear = () => {
-  return <div>Тазалау</div>
-}
+import { useNavigate } from 'react-router-dom'
 
 const FilterPage = () => {
-  // const history= useHistory()
-  const onClick = () => {
-    console.log('click')
+  const navigate = useNavigate()
+  const goBack = () => {
+    navigate('/')
   }
   return (
     <>
       <FeatureAppNavbar
         left={
-          <div onClick={onClick}>
+          <div onClick={goBack}>
             <BackIcon />
           </div>
         }
         center={<div>Фильтры</div>}
-        right={<Clear />}
+        right={<div>Тазалау</div>}
       />
       <UITitle>Жынысы</UITitle>
       <GenderSelector />
