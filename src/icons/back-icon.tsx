@@ -33,8 +33,8 @@ export const DownIcon: FC = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M9.13504 11C8.2872 11 7.82405 11.9889 8.36682 12.6402L11.2318 16.0781C11.6316 16.5579 12.3684 16.5579 12.7682 16.0781L15.6332 12.6402C16.176 11.9889 15.7128 11 14.865 11H9.13504Z"
       fill="#212121"
     />
@@ -51,9 +51,9 @@ export const RightIcon: FC = () => (
     <path
       d="M6.51404 11.471L10 8.00003L6.51404 4.52903"
       stroke="#9E9E9E"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
