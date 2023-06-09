@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
-
+import { QueryClientProvider, QueryClient } from 'react-query'
 import { Outlet } from 'react-router-dom'
 /* TODO: 
-  1. Add react-query
+  1. Add react-query ✅
   2. Add react-router ✅
   3. Create layout system
   4. Add api type declarations
@@ -12,10 +12,13 @@ import { Outlet } from 'react-router-dom'
 */
 
 function App(): ReactElement {
+  const queryClient = new QueryClient()
   return (
-    <div className="flex flex-col w-full h-full px-4">
-      <Outlet />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="flex flex-col w-full h-full px-4">
+        <Outlet />
+      </div>
+    </QueryClientProvider>
   )
 }
 
