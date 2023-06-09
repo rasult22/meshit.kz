@@ -24,7 +24,7 @@ const FeatureBannerCarousel: React.FC = () => {
           <div>
             <div
               key={banner.id}
-              className="h-[150px] w-full bg-contain bg-no-repeat"
+              className="h-[140px] w-full bg-contain bg-no-repeat"
               style={{ backgroundImage: `url(${banner.image})` }}
             ></div>
           </div>

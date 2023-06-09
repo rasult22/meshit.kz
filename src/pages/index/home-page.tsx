@@ -30,7 +30,7 @@ const HomePage = () => {
           </div>
         }
       />
-      <div className="min-h-[125px] my-4 relative">
+      <div className="min-h-[125px] my-4 justify-center relative">
         <FeatureBannerCarousel />
       </div>
       <div className="space-y-2 my-2">

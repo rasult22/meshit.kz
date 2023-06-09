@@ -6,8 +6,15 @@ export async function fetchBanners(featured?: string) {
     }
   })
 }
+export async function fetchBannerById(id: number) {
+  return await axios.get<Banner>('https://zhamagat.kz/api/banners/', {
+    params: {
+      id
+    }
+  })
+}
 
-interface Banner {
+export interface Banner {
   id: number
   image: string
   lesson: number
