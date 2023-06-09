@@ -18,7 +18,7 @@ const UICell: React.FC<Props> = ({
   return (
     <div onClick={onClick} className={`flex space-x-2`}>
       <div
-        className="w-[60px] h-[60px] flex-shrink-0 rounded-[16px] bg-cover"
+        className="w-[60px] h-[60px] flex-shrink-0 rounded-[16px] bg-cover bg-slate-400"
         style={{ backgroundImage: `url(${imageSrc})` }}
       ></div>
       <div className="space-y-[4px] w-full">

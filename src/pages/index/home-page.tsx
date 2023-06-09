@@ -30,8 +30,9 @@ const HomePage = () => {
           </div>
         }
       />
-      <div className="min-h-[125px] my-4">
+      <div className="min-h-[125px] my-4 relative">
         <FeatureBannerCarousel />
+        <div className="w-[92vw] absolute top-0 rounded-[16px] h-[125px] z-[-1] bg-slate-400"></div>
       </div>
       <div className="space-y-2 my-2">
         {mosques.map((mosque) => {
