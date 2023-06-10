@@ -9,8 +9,6 @@ import { FilterIcon } from '@/icons/filter-icon'
 import { DownIcon } from '@/icons/back-icon'
 import { mosques } from '../filter/mock'
 const HomePage = () => {
-  const [isGenderSelectorOpen, setGenderOpen] = useState(false)
-  const [gender, setGender] = useState<'male' | 'female' | undefined>()
   const navigate = useNavigate()
   const goToFilter = () => {
     navigate('/filter')
@@ -63,17 +61,7 @@ const HomePage = () => {
           )
         })}
       </div>
-
-      {isGenderSelectorOpen && (
-        <FeatureGenderSelector
-          value={gender}
-          onGenderSelect={(gender) => {
-            setGender(gender)
-            setGenderOpen(false)
-          }}
-        />
-      )}
-      <button onClick={() => setGenderOpen(true)}>Open gender selector</button>
+      <FeatureGenderSelector />
     </>
   )
 }
