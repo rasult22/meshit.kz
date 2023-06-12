@@ -16,5 +16,6 @@ export async function fetchMosqueById(id: number) {
 export interface Mosque {
   id: number
   name: string
+  image: string
   lessons: Lesson[]
 }
