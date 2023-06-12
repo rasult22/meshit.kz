@@ -4,10 +4,12 @@ import UITitle from '@/ui/title/ui-title'
 import UIChip from '@/ui/chips/ui-chip'
 import UIButton from '@/ui/buttons/ui-button'
 import { BackIcon } from '@/icons/back-icon'
-import { cities, mosques, lessonTypes } from './mock'
+import { cities, lessonTypes } from './mock'
 import { useNavigate } from 'react-router-dom'
 import useCity from '@/hooks/useCity'
-import { City } from '@/api/cities'
+import { City, fetchCities } from '@/api/cities'
+import { useQuery } from 'react-query'
+import { fetchMosques } from '@/api/mosques'
 
 type Gender = 'male' | 'female'
 
@@ -53,7 +55,7 @@ const FilterPage = () => {
       <UITitle>Қала</UITitle>
       <MemoizedCitySelector onCityChoose={onCityChoose} />
       <UITitle>Мешіттер</UITitle>
-      <MosqueSelector />
+      <MemoizedMosqueSelector />
       <UITitle>Іс шара түрлері</UITitle>
       <LessonsSelector />
       {/* <UITitle>Іс шара уақыттары</UITitle> */}
@@ -72,29 +74,34 @@ export default FilterPage
 interface CityProps {
   onCityChoose: (city: City) => void
 }
+
 const CitySelector: FC<CityProps> = ({ onCityChoose }) => {
   const [getCity] = useCity()
   const [city, setCity] = useState(getCity())
 
+  const { isLoading, data } = useQuery('cities', () => fetchCities())
   const onCityClick = (city: City) => {
     setCity(city)
     onCityChoose(city)
   }
 
+  if (isLoading) return <div></div>
+
   return (
     <>
       <div className="flex space-x-1 overflow-auto pb-4 border-b-[1px] border-[#E0E0E0]">
-        {cities.map(({ id, name }) => (
-          <UIChip
-            key={id}
-            selected={city.id === id}
-            onClick={() => {
-              onCityClick({ id, name })
-            }}
-          >
-            {name}
-          </UIChip>
-        ))}
+        {data &&
+          data.data.map(({ id, name }) => (
+            <UIChip
+              key={id}
+              selected={city.id === id}
+              onClick={() => {
+                onCityClick({ id, name })
+              }}
+            >
+              {name}
+            </UIChip>
+          ))}
       </div>
     </>
   )
@@ -102,25 +109,32 @@ const CitySelector: FC<CityProps> = ({ onCityChoose }) => {
 const MemoizedCitySelector = React.memo(CitySelector)
 
 const MosqueSelector = () => {
+  const { isLoading, data } = useQuery('mosques', () => fetchMosques())
+
   const [mosqueId, setMosqueId] = useState(1)
+
+  if (isLoading) return <div></div>
+
   return (
     <>
       <div className="flex space-x-1 overflow-auto pb-4 border-b-[1px] border-[#E0E0E0]">
-        {mosques.map((mosque) => (
-          <UIChip
-            key={mosque.id}
-            selected={mosqueId === mosque.id}
-            onClick={() => {
-              setMosqueId(mosque.id)
-            }}
-          >
-            {mosque.name}
-          </UIChip>
-        ))}
+        {data &&
+          data.data.map((mosque) => (
+            <UIChip
+              key={mosque.id}
+              selected={mosqueId === mosque.id}
+              onClick={() => {
+                setMosqueId(mosque.id)
+              }}
+            >
+              {mosque.name}
+            </UIChip>
+          ))}
       </div>
     </>
   )
 }
+const MemoizedMosqueSelector = React.memo(MosqueSelector)
 
 const LessonsSelector = () => {
   const [typeId, setTypeId] = useState(1)
