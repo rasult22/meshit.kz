@@ -72,8 +72,8 @@ export const CalendarIcon: FC = () => (
       strokeLinejoin="round"
     />
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M15.5617 3.57919H7.44717C4.63285 3.57919 2.875 5.21513 2.875 8.22222V17.2719C2.875 20.3262 4.63285 22 7.44717 22H15.5528C18.376 22 20.125 20.3546 20.125 17.3475V8.22222C20.1338 5.21513 18.3849 3.57919 15.5617 3.57919Z"
       stroke="#212121"
       strokeWidth="2"

@@ -6,11 +6,7 @@ export async function fetchMosques() {
 }
 
 export async function fetchMosqueById(id: number) {
-  return await axios.get<Mosque>('https://zhamagat.kz/api/mosques/', {
-    params: {
-      id
-    }
-  })
+  return await axios.get<Mosque>(`https://zhamagat.kz/api/mosques/${id}/`)
 }
 
 export interface Mosque {
