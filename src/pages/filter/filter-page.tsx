@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import FeatureAppNavbar from '@/features/app-navbar/feature-app-navbar'
 import UITitle from '@/ui/title/ui-title'
 import UIChip from '@/ui/chips/ui-chip'
@@ -6,12 +6,37 @@ import UIButton from '@/ui/buttons/ui-button'
 import { BackIcon } from '@/icons/back-icon'
 import { cities, mosques, lessonTypes } from './mock'
 import { useNavigate } from 'react-router-dom'
+import useCity from '@/hooks/useCity'
+import { City } from '@/api/cities'
+
+type Gender = 'male' | 'female'
 
 const FilterPage = () => {
   const navigate = useNavigate()
   const goBack = () => {
     navigate('/')
   }
+  const [city, setCity] = useState<City>()
+  const [gender, setGender] = useState<Gender>()
+
+  const onCityChoose = useCallback((city: City) => {
+    setCity(city)
+  }, [])
+
+  const onGenderChoose = useCallback((gender: Gender) => {
+    setGender(gender)
+  }, [])
+
+  const onSubmit = () => {
+    if (city) {
+      localStorage.setItem('app_chosen-city', JSON.stringify(city))
+      navigate('/')
+    }
+    if (gender) {
+      localStorage.setItem('app_user-chosen-gender', gender)
+    }
+  }
+
   return (
     <>
       <FeatureAppNavbar
@@ -24,17 +49,19 @@ const FilterPage = () => {
         right={<div>Тазалау</div>}
       />
       <UITitle>Жынысы</UITitle>
-      <GenderSelector />
+      <GenderSelector onGenderChoose={onGenderChoose} />
       <UITitle>Қала</UITitle>
-      <CitySelector />
+      <MemoizedCitySelector onCityChoose={onCityChoose} />
       <UITitle>Мешіттер</UITitle>
       <MosqueSelector />
       <UITitle>Іс шара түрлері</UITitle>
       <LessonsSelector />
-      <UITitle>Іс шара уақыттары</UITitle>
-      <TimeSelector />
+      {/* <UITitle>Іс шара уақыттары</UITitle> */}
+      {/* <TimeSelector /> */}
       <div className="w-full flex flex-col fixed bottom-[16px] px-4 left-0">
-        <UIButton large>Көрсету</UIButton>
+        <UIButton onClick={onSubmit} large>
+          Көрсету
+        </UIButton>
       </div>
     </>
   )
@@ -42,26 +69,37 @@ const FilterPage = () => {
 
 export default FilterPage
 
-const CitySelector = () => {
-  const [cityId, setCityId] = useState(1)
+interface CityProps {
+  onCityChoose: (city: City) => void
+}
+const CitySelector: FC<CityProps> = ({ onCityChoose }) => {
+  const [getCity] = useCity()
+  const [city, setCity] = useState(getCity())
+
+  const onCityClick = (city: City) => {
+    setCity(city)
+    onCityChoose(city)
+  }
+
   return (
     <>
       <div className="flex space-x-1 overflow-auto pb-4 border-b-[1px] border-[#E0E0E0]">
-        {cities.map((city) => (
+        {cities.map(({ id, name }) => (
           <UIChip
-            key={city.id}
-            selected={cityId === city.id}
+            key={id}
+            selected={city.id === id}
             onClick={() => {
-              setCityId(city.id)
+              onCityClick({ id, name })
             }}
           >
-            {city.name}
+            {name}
           </UIChip>
         ))}
       </div>
     </>
   )
 }
+const MemoizedCitySelector = React.memo(CitySelector)
 
 const MosqueSelector = () => {
   const [mosqueId, setMosqueId] = useState(1)
@@ -126,18 +164,22 @@ const TimeSelector = () => {
   )
 }
 
-const GenderSelector = () => {
+interface GenderProps {
+  onGenderChoose: (gender: Gender) => void
+}
+const GenderSelector: FC<GenderProps> = ({ onGenderChoose }) => {
   const genders = [
     {
-      id: 1,
+      id: 'male',
       name: 'Ер'
     },
     {
-      id: 2,
+      id: 'female',
       name: 'Әйел'
     }
   ]
-  const [genderId, setGenderId] = useState(1)
+  const gender = localStorage.getItem('app_user-chosen-gender')
+  const [genderId, setGenderId] = useState(gender)
   return (
     <>
       <div className="flex space-x-1 overflow-auto pb-4 border-b-[1px] border-[#E0E0E0]">
@@ -148,6 +190,7 @@ const GenderSelector = () => {
               selected={genderId === gender.id}
               onClick={() => {
                 setGenderId(gender.id)
+                onGenderChoose(gender.id as Gender)
               }}
             >
               {gender.name}

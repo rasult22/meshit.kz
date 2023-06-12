@@ -1,8 +1,4 @@
-import React, { useState, FC } from 'react'
-import { SearchIcon } from '@/icons/search-icon'
-import { FilterIcon } from '@/icons/filter-icon'
-import { CalendarIcon } from '@/icons/calendar-icon'
-import { BackIcon } from '@/icons/back-icon'
+import React, { FC } from 'react'
 import UINavbar from '@/ui/navbar/ui-navbar'
 
 type FeatureAppNavbarProps = {

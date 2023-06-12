@@ -7,9 +7,14 @@ import { useNavigate } from 'react-router-dom'
 import { SearchIcon } from '@/icons/search-icon'
 import { FilterIcon } from '@/icons/filter-icon'
 import { DownIcon } from '@/icons/back-icon'
+import useCity from '@/hooks/useCity'
 
 const HomePage = () => {
   const navigate = useNavigate()
+
+  const [getCity] = useCity()
+  const city = getCity()
+
   const goToFilter = () => {
     navigate('/filter')
   }
@@ -18,7 +23,7 @@ const HomePage = () => {
       <FeatureAppNavbar
         center={
           <div className="flex justify-center" onClick={goToFilter}>
-            Алматы <DownIcon />
+            {city.name} <DownIcon />
           </div>
         }
         left={<SearchIcon />}
