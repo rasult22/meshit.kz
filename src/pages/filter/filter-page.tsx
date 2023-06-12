@@ -32,10 +32,12 @@ const FilterPage = () => {
   const onSubmit = () => {
     if (city) {
       localStorage.setItem('app_chosen-city', JSON.stringify(city))
-      navigate('/')
     }
     if (gender) {
       localStorage.setItem('app_user-chosen-gender', gender)
+    }
+    if (city || gender) {
+      navigate('/')
     }
   }
 
