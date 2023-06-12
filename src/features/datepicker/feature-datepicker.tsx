@@ -42,7 +42,17 @@ const FeatureDatePicker: React.FC<Props> = ({ isOpen, setIsOpen }) => {
       }}
     >
       <UIOverlay isOpen={isOpen} />
-      <DatePicker open={isOpen} showToday={false} renderExtraFooter={Test} />
+      <DatePicker
+        popupStyle={{
+          top: '50%',
+          left: '50%',
+          marginTop: '-186px',
+          marginLeft: '-144px'
+        }}
+        open={isOpen}
+        showToday={false}
+        renderExtraFooter={Test}
+      />
     </ConfigProvider>
   )
 }
