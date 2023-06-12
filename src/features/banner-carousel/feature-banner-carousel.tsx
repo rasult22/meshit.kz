@@ -21,9 +21,8 @@ const FeatureBannerCarousel: React.FC = () => {
     <Carousel effect="fade">
       {data?.data.map((banner) => {
         return (
-          <div>
+          <div key={banner.id}>
             <div
-              key={banner.id}
               className="h-[140px] w-full bg-contain bg-no-repeat"
               style={{ backgroundImage: `url(${banner.image})` }}
             ></div>
