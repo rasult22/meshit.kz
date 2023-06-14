@@ -8,7 +8,9 @@ import UISpinner from '@/ui/spinner/ui-spinner'
   2. Add Actions or links
 */
 const FeatureBannerCarousel: React.FC = () => {
-  const { isLoading, data } = useQuery('banners', () => fetchBanners())
+  const { isLoading, data } = useQuery('banners', () => fetchBanners(), {
+    staleTime: 60000
+  })
 
   if (isLoading)
     return (

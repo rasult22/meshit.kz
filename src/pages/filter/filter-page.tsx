@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import FeatureAppNavbar from '@/features/app-navbar/feature-app-navbar'
 import UITitle from '@/ui/title/ui-title'
 import UIChip from '@/ui/chips/ui-chip'
@@ -9,7 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import useCity from '@/hooks/useCity'
 import { City, fetchCities } from '@/api/cities'
 import { useQuery } from 'react-query'
-import { fetchMosques } from '@/api/mosques'
+import { Mosque, fetchMosques } from '@/api/mosques'
+import UISpinner from '@/ui/spinner/ui-spinner'
 
 type Gender = 'male' | 'female'
 
@@ -20,9 +21,14 @@ const FilterPage = () => {
   }
   const [city, setCity] = useState<City>()
   const [gender, setGender] = useState<Gender>()
+  const [mosque, setMosque] = useState<Mosque>()
 
   const onCityChoose = useCallback((city: City) => {
     setCity(city)
+  }, [])
+
+  const onMosqueSelect = useCallback((mosque: Mosque) => {
+    setMosque(mosque)
   }, [])
 
   const onGenderChoose = useCallback((gender: Gender) => {
@@ -35,6 +41,9 @@ const FilterPage = () => {
     }
     if (gender) {
       localStorage.setItem('app_user-chosen-gender', gender)
+    }
+    if (mosque) {
+      localStorage.setItem('app_user-chosen-mosque', JSON.stringify(mosque))
     }
     if (city || gender) {
       navigate('/')
@@ -57,7 +66,10 @@ const FilterPage = () => {
       <UITitle>Қала</UITitle>
       <MemoizedCitySelector onCityChoose={onCityChoose} />
       <UITitle>Мешіттер</UITitle>
-      <MemoizedMosqueSelector />
+      <MemoizedMosqueSelector
+        cityId={city?.id}
+        onMosqueSelect={onMosqueSelect}
+      />
       <UITitle>Іс шара түрлері</UITitle>
       <LessonsSelector />
       {/* <UITitle>Іс шара уақыттары</UITitle> */}
@@ -81,7 +93,9 @@ const CitySelector: FC<CityProps> = ({ onCityChoose }) => {
   const [getCity] = useCity()
   const [city, setCity] = useState(getCity())
 
-  const { isLoading, data } = useQuery('cities', () => fetchCities())
+  const { isLoading, data } = useQuery('cities', () => fetchCities(), {
+    staleTime: 1000000
+  })
   const onCityClick = (city: City) => {
     setCity(city)
     onCityChoose(city)
@@ -110,12 +124,23 @@ const CitySelector: FC<CityProps> = ({ onCityChoose }) => {
 }
 const MemoizedCitySelector = React.memo(CitySelector)
 
-const MosqueSelector = () => {
-  const { isLoading, data } = useQuery('mosques', () => fetchMosques())
+interface MosqueProps {
+  cityId?: number
+  onMosqueSelect: (mosque: Mosque) => void
+}
+const MosqueSelector: FC<MosqueProps> = ({ cityId, onMosqueSelect }) => {
+  const { isLoading, isFetching, data, refetch } = useQuery(
+    'mosques',
+    () => fetchMosques(cityId),
+    { enabled: false }
+  )
+  useEffect(() => {
+    refetch()
+  }, [cityId])
 
   const [mosqueId, setMosqueId] = useState(1)
 
-  if (isLoading) return <div></div>
+  if (isLoading || isFetching) return <UISpinner />
 
   return (
     <>
@@ -127,11 +152,13 @@ const MosqueSelector = () => {
               selected={mosqueId === mosque.id}
               onClick={() => {
                 setMosqueId(mosque.id)
+                onMosqueSelect(mosque)
               }}
             >
               {mosque.name}
             </UIChip>
           ))}
+        {data && data.data.length < 1 && 'Нет данных'}
       </div>
     </>
   )
