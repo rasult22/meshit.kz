@@ -9,14 +9,16 @@ interface Props {
 }
 
 const FeatureLessonsList: React.FC<Props> = ({ id }) => {
-  const { isLoading: isLessonsLoading, data: lessonsData } = useQuery(
-    'lessons',
-    () =>
-      fetchLessons({
-        mosque: id
-      })
+  const {
+    isLoading: isLessonsLoading,
+    isFetching,
+    data: lessonsData
+  } = useQuery('lessons', () =>
+    fetchLessons({
+      mosque: id
+    })
   )
-  if (isLessonsLoading) return <div></div>
+  if (isLessonsLoading || isFetching) return <div></div>
   let prevDate: string | null = null
   return (
     <div>
@@ -40,6 +42,9 @@ const FeatureLessonsList: React.FC<Props> = ({ id }) => {
             </div>
           )
         })}
+      {lessonsData && lessonsData.data.length < 1 && (
+        <div className="text-center pt-10">Нет данных</div>
+      )}
     </div>
   )
 }
