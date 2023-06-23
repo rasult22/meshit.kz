@@ -51,7 +51,7 @@ const FeatureDatePicker: React.FC<Props> = ({ isOpen, setIsOpen }) => {
         }}
         open={isOpen}
         showToday={false}
-        renderExtraFooter={Test}
+        renderExtraFooter={Test as () => React.ReactNode}
       />
     </ConfigProvider>
   )

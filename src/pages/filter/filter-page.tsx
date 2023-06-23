@@ -139,7 +139,7 @@ const MosqueSelector: FC<MosqueProps> = ({ cityId, onMosqueSelect }) => {
     refetch()
   }, [cityId])
 
-  const [mosqueId, setMosqueId] = useState()
+  const [mosqueId, setMosqueId] = useState<number>()
 
   if (isLoading || isFetching) return <UISpinner />
 
