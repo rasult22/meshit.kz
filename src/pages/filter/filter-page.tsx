@@ -19,7 +19,8 @@ const FilterPage = () => {
   const goBack = () => {
     navigate('/')
   }
-  const [city, setCity] = useState<City>()
+  const [getCity] = useCity()
+  const [city, setCity] = useState<City>(getCity())
   const [gender, setGender] = useState<Gender>()
   const [mosque, setMosque] = useState<Mosque>()
 
@@ -138,7 +139,7 @@ const MosqueSelector: FC<MosqueProps> = ({ cityId, onMosqueSelect }) => {
     refetch()
   }, [cityId])
 
-  const [mosqueId, setMosqueId] = useState(1)
+  const [mosqueId, setMosqueId] = useState()
 
   if (isLoading || isFetching) return <UISpinner />
 
