@@ -35,7 +35,8 @@ const FeatureLessonsList: React.FC<Props> = ({ id }) => {
               )}
               <div>
                 <span className="text-[#9E9E9E]">
-                  {lesson.start_time}-{lesson.end_time}
+                  {lesson.start_time.substring(0, 5)}-
+                  {lesson.end_time.substring(0, 5)}
                 </span>{' '}
                 - {lesson.type.name}
               </div>

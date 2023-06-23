@@ -13,18 +13,6 @@ import { Outlet } from 'react-router-dom'
 
 function App(): ReactElement {
   const queryClient = new QueryClient()
-  useEffect(() => {
-    const city = localStorage.getItem('app_chosen-city')
-    if (!city) {
-      localStorage.setItem(
-        'app_chosen-city',
-        JSON.stringify({
-          id: 1,
-          name: 'Алматы'
-        })
-      )
-    }
-  }, [])
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex flex-col w-full h-full px-4 max-w-[450px]">

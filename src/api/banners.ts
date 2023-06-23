@@ -18,4 +18,7 @@ export interface Banner {
   id: number
   image: string
   lesson: number
+  featured: boolean
+  city_id: number
+  mosque_id: number
 }

@@ -23,10 +23,14 @@ const HomePage = () => {
       <FeatureAppNavbar
         center={
           <div className="flex justify-center" onClick={goToFilter}>
-            {city.name} <DownIcon />
+            {city?.name || 'Все'} <DownIcon />
           </div>
         }
-        left={<SearchIcon />}
+        left={
+          <div className="opacity-[0.1]">
+            <SearchIcon />
+          </div>
+        }
         right={
           <div onClick={goToFilter}>
             <FilterIcon />

@@ -5,10 +5,14 @@ import { useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { fetchMosques } from '@/api/mosques'
 import UISpinner from '@/ui/spinner/ui-spinner'
+import useCity from '@/hooks/useCity'
 
 const FeatureMosqueList: React.FC = () => {
   const navigate = useNavigate()
-  const { isLoading, data } = useQuery('mosques', () => fetchMosques())
+  const [getCity] = useCity()
+  const { isLoading, data } = useQuery('mosques', () =>
+    fetchMosques(getCity()?.id)
+  )
 
   if (isLoading)
     return (

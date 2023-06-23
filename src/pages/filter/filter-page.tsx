@@ -46,9 +46,13 @@ const FilterPage = () => {
     if (mosque) {
       localStorage.setItem('app_user-chosen-mosque', JSON.stringify(mosque))
     }
-    if (city || gender) {
-      navigate('/')
+    if (!city) {
+      localStorage.removeItem('app_chosen-city')
     }
+    navigate('/')
+  }
+  const resetAll = () => {
+    setCity(null)
   }
 
   return (
@@ -60,12 +64,12 @@ const FilterPage = () => {
           </div>
         }
         center={<div>Фильтры</div>}
-        right={<div>Тазалау</div>}
+        right={<div onClick={resetAll}>Тазалау</div>}
       />
       <UITitle>Жынысы</UITitle>
       <GenderSelector onGenderChoose={onGenderChoose} />
       <UITitle>Қала</UITitle>
-      <MemoizedCitySelector onCityChoose={onCityChoose} />
+      <MemoizedCitySelector city={city} onCityChoose={onCityChoose} />
       <UITitle>Мешіттер</UITitle>
       <MemoizedMosqueSelector
         cityId={city?.id}
@@ -88,12 +92,15 @@ export default FilterPage
 
 interface CityProps {
   onCityChoose: (city: City) => void
+  city?: City
 }
 
-const CitySelector: FC<CityProps> = ({ onCityChoose }) => {
-  const [getCity] = useCity()
-  const [city, setCity] = useState(getCity())
-
+const CitySelector: FC<CityProps> = ({ onCityChoose, city: cityFromProps }) => {
+  console.log('render')
+  const [city, setCity] = useState(cityFromProps)
+  useEffect(() => {
+    setCity(cityFromProps)
+  }, [cityFromProps])
   const { isLoading, data } = useQuery('cities', () => fetchCities(), {
     staleTime: 1000000
   })
@@ -111,7 +118,7 @@ const CitySelector: FC<CityProps> = ({ onCityChoose }) => {
           data.data.map(({ id, name }) => (
             <UIChip
               key={id}
-              selected={city.id === id}
+              selected={city?.id === id}
               onClick={() => {
                 onCityClick({ id, name })
               }}
@@ -167,7 +174,7 @@ const MosqueSelector: FC<MosqueProps> = ({ cityId, onMosqueSelect }) => {
 const MemoizedMosqueSelector = React.memo(MosqueSelector)
 
 const LessonsSelector = () => {
-  const [typeId, setTypeId] = useState(1)
+  const [typeId, setTypeId] = useState(null)
   return (
     <>
       <div className="flex space-x-1 overflow-auto pb-4 border-b-[1px] border-[#E0E0E0]">
@@ -194,10 +201,10 @@ const TimeSelector = () => {
       <div className="flex space-x-1 overflow-auto pb-4 border-b-[1px] border-[#E0E0E0]">
         {cities.map((city) => (
           <UIChip
-            key={city.id}
-            selected={cityId === city.id}
+            key={city?.id || Math.random()}
+            selected={cityId === city?.id}
             onClick={() => {
-              setCityId(city.id)
+              setCityId(city?.id)
             }}
           >
             {city.name}
