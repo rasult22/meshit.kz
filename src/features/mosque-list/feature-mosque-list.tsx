@@ -6,6 +6,7 @@ import { useQuery } from 'react-query'
 import { fetchMosques } from '@/api/mosques'
 import UISpinner from '@/ui/spinner/ui-spinner'
 import useCity from '@/hooks/useCity'
+import getWeekDay from '@/utils/getWeekDay'
 
 const FeatureMosqueList: React.FC = () => {
   const navigate = useNavigate()
@@ -25,6 +26,8 @@ const FeatureMosqueList: React.FC = () => {
     <div className="space-y-3 my-2">
       {data &&
         data?.data.map((mosque) => {
+          if (mosque.lessons.length < 1) return
+
           return (
             <UICell
               onClick={() => {
@@ -43,7 +46,7 @@ const FeatureMosqueList: React.FC = () => {
                   } text-[12px] leading-[16px] flex space-x-1`}
                 >
                   <div className="text-[#9E9E9E]">
-                    {x.date} {x.start_time.substring(0, 5)}-
+                    {getWeekDay(x.date)} {x.start_time.substring(0, 5)}-
                     {x.end_time.substring(0, 5)}
                   </div>
                   <div>- {x.type.name}</div>

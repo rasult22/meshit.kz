@@ -8,8 +8,10 @@ import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import FeatureLessonsList from '@/features/lessons-list/feature-lessons-list'
 import UISpinner from '@/ui/spinner/ui-spinner'
+import useGender from '@/hooks/useGender'
 
 const MosquePage = () => {
+  const { getGender } = useGender()
   const navigate = useNavigate()
   const { mosqueId } = useParams()
   const { isLoading, data } = useQuery('mosque', () =>
@@ -18,9 +20,11 @@ const MosquePage = () => {
 
   const [isOpen, setIsOpen] = useState(false)
   const openCalendar = () => {
-    setIsOpen(true)
+    // temporary turn off calendar
+    return
+    // setIsOpen(true)
   }
-
+  const gender = getGender()
   if (isLoading) {
     return (
       <div className="flex justify-center items-center w-full h-full">
@@ -43,13 +47,13 @@ const MosquePage = () => {
           </div>
         }
         right={
-          <div onClick={openCalendar}>
+          <div className="opacity-[0.1]" onClick={openCalendar}>
             <CalendarIcon />
           </div>
         }
       />
       <FeatureDatePicker isOpen={isOpen} setIsOpen={setIsOpen} />
-      {mosqueId && <FeatureLessonsList id={mosqueId} />}
+      {mosqueId && <FeatureLessonsList id={mosqueId} gender={gender} />}
     </>
   )
 }

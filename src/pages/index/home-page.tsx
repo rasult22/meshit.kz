@@ -37,7 +37,7 @@ const HomePage = () => {
           </div>
         }
       />
-      <div className="min-h-[125px] my-4 justify-center relative">
+      <div className="min-h-[125px] mb-4 justify-center relative">
         <FeatureBannerCarousel />
       </div>
       <FeatureMosqueList />

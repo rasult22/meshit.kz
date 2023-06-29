@@ -2,20 +2,23 @@ import { fetchLessons } from '@/api/lessons'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { Divider } from 'antd'
+import getWeekDay from '@/utils/getWeekDay'
 
 interface Props {
   id: string
+  gender?: 'male' | 'female'
   onClick?: () => void
 }
 
-const FeatureLessonsList: React.FC<Props> = ({ id }) => {
+const FeatureLessonsList: React.FC<Props> = ({ id, gender }) => {
   const {
     isLoading: isLessonsLoading,
     isFetching,
     data: lessonsData
   } = useQuery('lessons', () =>
     fetchLessons({
-      mosque: id
+      mosque: id,
+      gender: gender && gender.toUpperCase()
     })
   )
   if (isLessonsLoading || isFetching) return <div></div>
@@ -30,7 +33,9 @@ const FeatureLessonsList: React.FC<Props> = ({ id }) => {
             <div key={lesson.date + lesson.start_time}>
               {shouldShowDivider && (
                 <Divider plain>
-                  <span className="text-[#9E9E9E]">{lesson.date}</span>
+                  <span className="text-[#9E9E9E]">
+                    {getWeekDay(lesson.date)}
+                  </span>
                 </Divider>
               )}
               <div>
@@ -51,3 +56,8 @@ const FeatureLessonsList: React.FC<Props> = ({ id }) => {
 }
 
 export default FeatureLessonsList
+
+// Example usage:
+// const date = '2023-06-29' // YYYY-MM-DD format
+// const weekDay = getWeekDay(date)
+// console.log(weekDay) // Output: Thursday
