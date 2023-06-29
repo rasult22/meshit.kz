@@ -4,10 +4,7 @@ import { useQuery } from 'react-query'
 import { Banner, fetchBanners } from '@/api/banners'
 import UISpinner from '@/ui/spinner/ui-spinner'
 import { useNavigate } from 'react-router-dom'
-/* TODO: 
-  1. Fetch Banners ✅
-  2. Add Actions or links
-*/
+
 const FeatureBannerCarousel: React.FC = () => {
   const { isLoading, data } = useQuery('banners', () => fetchBanners(), {
     staleTime: 60000
@@ -30,7 +27,7 @@ const FeatureBannerCarousel: React.FC = () => {
         return (
           <div key={banner.id} onClick={() => onBannerClick(banner)}>
             <div
-              className="h-[140px] w-full bg-contain bg-no-repeat"
+              className="h-[140px] w-full bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: `url(${banner.image})` }}
             ></div>
           </div>
