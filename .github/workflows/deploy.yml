@@ -18,6 +18,7 @@ jobs:
           script: |
             cd /home/react-projects/meshit.kz &&
             git pull &&
+            sudo apt-get install -y nodejs &&
             node -v &&
             yarn install &&
             rm -rf dist/ &&
