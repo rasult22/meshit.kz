@@ -3,7 +3,7 @@ name: Deploy React App
 on:
   push:
     branches:
-      - main # Replace with the name of the branch you want to deploy 1
+      - main # Replace with the name of the branch you want to deploy
 jobs:
   deploy:
     runs-on: self-hosted
