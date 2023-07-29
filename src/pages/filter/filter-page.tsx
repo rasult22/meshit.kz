@@ -70,13 +70,15 @@ const FilterPage = () => {
       <GenderSelector onGenderChoose={onGenderChoose} />
       <UITitle>Қала</UITitle>
       <MemoizedCitySelector city={city} onCityChoose={onCityChoose} />
-      <UITitle>Мешіттер</UITitle>
-      <MemoizedMosqueSelector
-        cityId={city?.id}
-        onMosqueSelect={onMosqueSelect}
-      />
-      <UITitle>Іс шара түрлері</UITitle>
-      <LessonsSelector />
+      <div className="opacity-[0.4] pointer-events-none">
+        <UITitle>Мешіттер</UITitle>
+        <MemoizedMosqueSelector
+          cityId={city?.id}
+          onMosqueSelect={onMosqueSelect}
+        />
+        <UITitle>Іс шара түрлері</UITitle>
+        <LessonsSelector />
+      </div>
       {/* <UITitle>Іс шара уақыттары</UITitle> */}
       {/* <TimeSelector /> */}
       <div className="w-full flex flex-col fixed bottom-[16px] px-4 left-0">
