@@ -49,7 +49,9 @@ const FeatureLessonsList: React.FC<Props> = ({ id, gender }) => {
           )
         })}
       {lessonsData && lessonsData.data.length < 1 && (
-        <div className="text-center pt-10">Нет данных</div>
+        <div className="text-center pt-10">
+          Мешіт дәрістері әзірге енгізілмеген
+        </div>
       )}
     </div>
   )
