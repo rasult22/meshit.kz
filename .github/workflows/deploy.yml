@@ -16,9 +16,11 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             cd /home/react-projects/meshit.kz &&
             git pull &&
-            sudo apt-get install -y nodejs &&
+            nvm use 18 &&
             node -v &&
             yarn install &&
             rm -rf dist/ &&
