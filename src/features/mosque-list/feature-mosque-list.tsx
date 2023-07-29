@@ -7,12 +7,14 @@ import { fetchMosques } from '@/api/mosques'
 import UISpinner from '@/ui/spinner/ui-spinner'
 import useCity from '@/hooks/useCity'
 import getWeekDay from '@/utils/getWeekDay'
-
+import useGender from '@/hooks/useGender'
 const FeatureMosqueList: React.FC = () => {
   const navigate = useNavigate()
   const [getCity] = useCity()
+  const { getGender } = useGender()
+
   const { isLoading, data } = useQuery('mosques', () =>
-    fetchMosques(getCity()?.id)
+    fetchMosques(getCity()?.id, getGender())
   )
 
   if (isLoading)
