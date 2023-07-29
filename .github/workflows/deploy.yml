@@ -16,8 +16,12 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /home/react-projects/meshit.kz
-            git pull
-            yarn install
-            yarn build
+            cd /home/react-projects/meshit.kz &&
+            git pull &&
+            echo "(ls -la)" &&
+            yarn install &&
+            rm -rf dist/ &&
+            echo "(ls -la)" &&
+            yarn build &&
+            echo "(ls -la)" &&
             cp -R dist/. /usr/share/nginx/html
