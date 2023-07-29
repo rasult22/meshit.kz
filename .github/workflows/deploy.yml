@@ -18,13 +18,9 @@ jobs:
           script: |
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
-            cd /home/react-projects/meshit.kz &&
-            git pull &&
-            nvm use 18 &&
-            node -v &&
-            yarn install &&
-            rm -rf dist/ &&
-            echo "(ls -la)" &&
-            yarn build &&
-            echo "(ls -la)" &&
+            cd /home/react-projects/meshit.kz
+            git pull
+            nvm use 18
+            yarn install
+            yarn build
             cp -R dist/. /usr/share/nginx/html
