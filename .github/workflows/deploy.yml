@@ -18,7 +18,7 @@ jobs:
           script: |
             cd /home/react-projects/meshit.kz &&
             git pull &&
-            echo "(ls -la)" &&
+            node -v &&
             yarn install &&
             rm -rf dist/ &&
             echo "(ls -la)" &&
