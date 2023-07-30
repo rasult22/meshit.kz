@@ -2,13 +2,13 @@ import axios from 'axios'
 import { Lesson } from './lessons'
 
 export async function fetchMosques(
-  city?: number,
-  gender: 'male' | 'female' = 'male'
+  city?: number
+  /* gender: 'male' | 'female' = 'male' */
 ) {
   return await axios.get<Mosque[]>('https://zhamagat.kz/api/mosques/', {
     params: {
-      city,
-      gender: gender.toUpperCase()
+      city
+      /* gender: gender.toUpperCase() */
     }
   })
 }

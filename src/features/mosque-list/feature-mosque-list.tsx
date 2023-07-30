@@ -14,7 +14,8 @@ const FeatureMosqueList: React.FC = () => {
   const { getGender } = useGender()
 
   const { isLoading, data } = useQuery('mosques', () =>
-    fetchMosques(getCity()?.id, getGender())
+    // temporary turn off gender filtering
+    fetchMosques(getCity()?.id /* getGender() */)
   )
 
   if (isLoading)
