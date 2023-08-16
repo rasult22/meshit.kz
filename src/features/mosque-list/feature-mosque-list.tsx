@@ -26,6 +26,7 @@ const FeatureMosqueList: React.FC = () => {
 
   return (
     <div className="space-y-3 my-2">
+      Test Satpayev Branch
       {data &&
         data?.data.map((mosque) => {
           if (mosque.lessons.length < 1) return
