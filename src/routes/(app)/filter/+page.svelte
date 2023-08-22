@@ -2,18 +2,9 @@
 	import AppHeader from '$lib/ui/navbar/ui-navbar.svelte';
 	import BackIcon from '$lib/icons/back-icon.svelte';
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-
-	export let data;
-
-	$: ({ mosque } = data);
+	import CitySelector from '$lib/features/filter/city-selector.svelte';
 </script>
 
-<svelte:head>
-	<title>
-		{mosque.name}
-	</title>
-</svelte:head>
 <AppHeader>
 	<svelte:fragment slot="leftIcon">
 		<BackIcon
@@ -33,8 +24,8 @@
 </AppHeader>
 <div>id</div>
 
-{#each mosque.lessons as lesson}
-	<div>
-		{lesson.type.name}
-	</div>
-{/each}
+<CitySelector
+	on:citySelect={(e) => {
+		console.log(e.detail);
+	}}
+/>
