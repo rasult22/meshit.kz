@@ -3,10 +3,8 @@
 	import UIChip from '$lib/ui/chips/ui-chip.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	export let city: City = {
-		id: 1,
-		name: 'Hz'
-	};
+	export let city: City;
+
 	const dispatch = createEventDispatcher<{ citySelect: City }>();
 	async function fetchData() {
 		const data = await fetchCities();
