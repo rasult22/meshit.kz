@@ -35,7 +35,7 @@
 <UITitle>Қала</UITitle>
 <CitySelector
 	on:citySelect={(e) => {
-		console.log(e.detail);
+		// console.log(e.detail);
 	}}
 />
 <div class="opacity-[0.4] pointer-events-none">

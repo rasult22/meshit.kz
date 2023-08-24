@@ -2,7 +2,7 @@ import type { Mosque } from '$lib/api/mosques';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ params, fetch }) => {
-	console.log('page with id ' + params.id + ' runs');
+	console.log('+page.ts(mosques/[id])');
 	const mosque = await fetchMosqueById(fetch, params.id);
 
 	return {

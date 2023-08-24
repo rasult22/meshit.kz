@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { blur } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
+	console.log('+layout.svelte(app)');
+	export let data;
 </script>
 
 <div class="bg-red-500 text-white bottom-0 absolute z-[1000]">App Layout</div>
-{#key $page.url.pathname}
-	<div
-		class="px-[16px] w-full"
-		in:blur={{ duration: 200, delay: 300 }}
-		out:blur={{ duration: 100 }}
-	>
+
+{#key data.pathname}
+	<div class="px-[16px] w-full" in:fade={{ duration: 200, delay: 50 }} out:fade={{ duration: 100 }}>
 		<slot />
 	</div>
 {/key}

@@ -21,7 +21,7 @@
 		}
 		genderQuery.set(getGender() || 'male');
 	}
-
+	console.log('+page.svelte(app)');
 	export let data;
 
 	$: ({ cities, banners, mosques } = data);
