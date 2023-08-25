@@ -1,13 +1,14 @@
-export default (date: string | Date) => {
+export default (number: number) => {
+  if (isNaN(number)) return ''
+
   const daysOfWeek = [
-    'Жексенбі',
     'Дүйсенбі',
     'Сейсенбі',
     'Сәрсенбі',
     'Бейсенбі',
     'Жұма',
-    'Сенбі'
+    'Сенбі',
+    'Жексенбі'
   ]
-  const dayIndex = new Date(date).getDay()
-  return daysOfWeek[dayIndex]
+  return daysOfWeek[number - 1]
 }

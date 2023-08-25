@@ -29,6 +29,8 @@ export interface Lesson {
   start_time: string
   end_time: string
   date: string
+  week_day: string
+  degree_type: null
 }
 
 export interface LessonTeacherDetail {
