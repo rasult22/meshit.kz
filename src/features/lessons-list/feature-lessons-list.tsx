@@ -34,7 +34,7 @@ const FeatureLessonsList: React.FC<Props> = ({ id, gender }) => {
               {shouldShowDivider && (
                 <Divider plain>
                   <span className="text-[#9E9E9E]">
-                    {getWeekDay(Number(lesson.week_day))}
+                    {getWeekDay(lesson.week_day)}
                   </span>
                 </Divider>
               )}

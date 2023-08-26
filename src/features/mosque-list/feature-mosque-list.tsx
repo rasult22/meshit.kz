@@ -48,7 +48,7 @@ const FeatureMosqueList: React.FC = () => {
                   } text-[12px] leading-[16px] flex space-x-1`}
                 >
                   <div className="text-[#9E9E9E]">
-                    {getWeekDay(x.date)} {x.start_time.substring(0, 5)}-
+                    {getWeekDay(x.week_day)} {x.start_time.substring(0, 5)}-
                     {x.end_time.substring(0, 5)}
                   </div>
                   <div>- {x.type.name}</div>

@@ -1,14 +1,12 @@
-export default (number: number) => {
-  if (isNaN(number)) return ''
-
-  const daysOfWeek = [
-    'Дүйсенбі',
-    'Сейсенбі',
-    'Сәрсенбі',
-    'Бейсенбі',
-    'Жұма',
-    'Сенбі',
-    'Жексенбі'
-  ]
-  return daysOfWeek[number - 1]
+export default (string: string) => {
+  const daysOfWeek = {
+    MN: 'Дүйсенбі',
+    TU: 'Сейсенбі',
+    WD: 'Сәрсенбі',
+    TH: 'Бейсенбі',
+    FR: 'Жұма',
+    ST: 'Сенбі',
+    SN: 'Жексенбі'
+  }
+  return daysOfWeek[string]
 }
