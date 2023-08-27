@@ -21,7 +21,7 @@ const UICell: React.FC<Props> = ({
         className="w-[60px] h-[60px] flex-shrink-0 rounded-[16px] bg-cover bg-slate-400"
         style={{ backgroundImage: `url(${imageSrc})` }}
       ></div>
-      <div className="border-b-[#E0E0E0] border-b-[1px] space-y-[4px] w-full">
+      <div className="border-b-[#E0E0E0] border-b-[1px] space-y-[4px] w-full pb-2 overflow-hidden">
         <div className="flex w-full">
           <div className="text-[16px] leading-[20px] max-w-[80%] text-ellipsis whitespace-nowrap overflow-hidden">
             <span className="">{title}</span>
@@ -33,7 +33,7 @@ const UICell: React.FC<Props> = ({
             <RightIcon />
           </div>
         </div>
-        <div>{children}</div>
+        {children}
       </div>
     </div>
   )
