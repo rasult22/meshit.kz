@@ -12,7 +12,7 @@ import useCity from '@/hooks/useCity'
 const HomePage = () => {
   const navigate = useNavigate()
 
-  const [getCity] = useCity()
+  const { getCity } = useCity()
   const city = getCity()
 
   const goToFilter = () => {

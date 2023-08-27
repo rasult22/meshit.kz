@@ -13,7 +13,7 @@ import { MaleIcon } from '@/icons/male-icon'
 
 const FeatureMosqueList: React.FC = () => {
   const navigate = useNavigate()
-  const [getCity] = useCity()
+  const { getCity } = useCity()
   const { getGender } = useGender()
 
   const { isLoading, data } = useQuery('mosques', () =>
@@ -29,7 +29,6 @@ const FeatureMosqueList: React.FC = () => {
 
   return (
     <div className="space-y-3 my-2">
-      Test Satpayev Branch
       {data &&
         data?.data.map((mosque) => {
           if (mosque.lessons.length < 1) return

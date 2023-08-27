@@ -19,7 +19,7 @@ const FilterPage = () => {
   const goBack = () => {
     navigate('/')
   }
-  const [getCity] = useCity()
+  const { getCity } = useCity()
   const [city, setCity] = useState<City>(getCity())
   const [gender, setGender] = useState<Gender>()
   const [mosque, setMosque] = useState<Mosque>()
