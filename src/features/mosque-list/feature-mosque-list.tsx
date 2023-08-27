@@ -51,7 +51,7 @@ const FeatureMosqueList: React.FC = () => {
                   } text-[12px] w-full leading-[16px] flex pr-2`}
                 >
                   <div>
-                    {x.gender === 'FEMALE' ? <FemaleIcon /> : <MaleIcon />}
+                    {x.gender === 'Женщины' ? <FemaleIcon /> : <MaleIcon />}
                   </div>
                   <div className="text-[#9E9E9E] font-medium">
                     {' '}

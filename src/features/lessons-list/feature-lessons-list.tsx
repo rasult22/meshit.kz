@@ -43,7 +43,11 @@ const FeatureLessonsList: React.FC<Props> = ({ id, gender }) => {
               <div className="w-full">
                 <div className="w-full flex flex-wrap items-center space-x-2">
                   <div className="self-start pt-1">
-                    {lesson.gender === 'FEMALE' ? <FemaleIcon /> : <MaleIcon />}
+                    {lesson.gender === 'Женщины' ? (
+                      <FemaleIcon />
+                    ) : (
+                      <MaleIcon />
+                    )}
                   </div>
                   <div className="flex flex-wrap">
                     <span>{lesson.type.name}</span>
