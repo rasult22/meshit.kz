@@ -12,12 +12,13 @@ function useCity() {
       return JSON.parse(cityFromStorage) as City
     } else {
       // !!only for Satpayev branch!!
-      setCity({
+      const satpayev = {
         id: 3,
         name: 'Сатпаев'
-      })
+      }
+      setCity(satpayev)
+      return satpayev
     }
-    return null
   }
 
   return { getCity, setCity }
