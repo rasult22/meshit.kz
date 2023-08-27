@@ -29,7 +29,7 @@ export interface Lesson {
   start_time: string
   end_time: string
   start_date: string
-  gender: 'MALE' | 'FEMALE'
+  gender: 'Мужчины' | 'Женщины'
   week_day: string
   degree_type: null
 }
