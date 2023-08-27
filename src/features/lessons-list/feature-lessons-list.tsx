@@ -3,6 +3,8 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { Divider } from 'antd'
 import getWeekDay from '@/utils/getWeekDay'
+import { FemaleIcon } from '@/icons/female-icon'
+import { MaleIcon } from '@/icons/male-icon'
 
 interface Props {
   id: string
@@ -26,24 +28,34 @@ const FeatureLessonsList: React.FC<Props> = ({ id, gender }) => {
   return (
     <div>
       {lessonsData &&
-        lessonsData.data.map((lesson) => {
-          const shouldShowDivider = lesson.date !== prevDate
-          prevDate = lesson.date
+        lessonsData.data.map((lesson, index) => {
+          const shouldShowDivider = lesson.week_day !== prevDate
+          prevDate = lesson.week_day
           return (
-            <div key={lesson.date + lesson.start_time}>
+            <div key={index + lesson.start_time}>
               {shouldShowDivider && (
                 <Divider plain>
                   <span className="text-[#9E9E9E]">
-                    {getWeekDay(lesson.date)}
+                    {getWeekDay(lesson.week_day)} | {lesson.week_day}
                   </span>
                 </Divider>
               )}
-              <div>
-                <span className="text-[#9E9E9E]">
-                  {lesson.start_time.substring(0, 5)}-
-                  {lesson.end_time.substring(0, 5)}
-                </span>{' '}
-                - {lesson.type.name}
+              <div className="w-full">
+                <div className="w-full flex flex-wrap items-center space-x-2">
+                  <div className="self-start pt-1">
+                    {lesson.gender === 'FEMALE' ? <FemaleIcon /> : <MaleIcon />}
+                  </div>
+                  <div className="flex flex-wrap">
+                    <span>{lesson.type.name}</span>
+                    <span className="w-full text-[#9E9E9E] text-[12px]">
+                      {/* 2-ші сабақ */}
+                    </span>
+                  </div>
+                  <span className="text-[#9E9E9E] ml-[auto!important]">
+                    {lesson.start_time.substring(0, 5)}-
+                    {lesson.end_time.substring(0, 5)}
+                  </span>
+                </div>
               </div>
             </div>
           )

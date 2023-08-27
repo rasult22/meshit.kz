@@ -1,13 +1,12 @@
-export default (date: string | Date) => {
-  const daysOfWeek = [
-    'Жексенбі',
-    'Дүйсенбі',
-    'Сейсенбі',
-    'Сәрсенбі',
-    'Бейсенбі',
-    'Жұма',
-    'Сенбі'
-  ]
-  const dayIndex = new Date(date).getDay()
-  return daysOfWeek[dayIndex]
+export default (string: string) => {
+  const daysOfWeek = {
+    MN: 'Дүйсенбі',
+    TU: 'Сейсенбі',
+    WD: 'Сәрсенбі',
+    TH: 'Бейсенбі',
+    FR: 'Жұма',
+    ST: 'Сенбі',
+    SN: 'Жексенбі'
+  }
+  return daysOfWeek[string]
 }

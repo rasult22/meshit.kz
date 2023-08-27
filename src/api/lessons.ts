@@ -20,7 +20,7 @@ export interface LessonsApiCallQuery {
   gender?: string
   start_time?: string
   end_time?: string
-  date?: string
+  start_date?: string
 }
 
 export interface Lesson {
@@ -28,7 +28,10 @@ export interface Lesson {
   teacher: LessonTeacherDetail
   start_time: string
   end_time: string
-  date: string
+  start_date: string
+  gender: 'MALE' | 'FEMALE'
+  week_day: string
+  degree_type: null
 }
 
 export interface LessonTeacherDetail {
